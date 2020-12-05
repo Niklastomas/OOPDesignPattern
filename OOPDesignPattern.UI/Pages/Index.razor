@@ -2,10 +2,12 @@
 
 @inject IProductRepository productRepository
 @inject IShoppingCart shoppingCart
+@inject ICommandManager commandManger
 
 <div class="container">
-
+    <button @onclick="Undo">Undo</button>
     <i style="font-size: 30px;" class="fas fa-shopping-cart">@shoppingCart.Cart.Count</i>
+    <button @onclick="Redo">Redo</button>
 
     <div class="row">
         @foreach (var product in products)
@@ -27,8 +29,19 @@
 
     private void AddToCart(Product product)
     {
-        shoppingCart.AddToCart(product);
 
+        commandManger.Invoke(new AddToShoppingCartCommand(product, shoppingCart));
+
+    }
+
+    private void Undo()
+    {
+        commandManger.Undo();
+    }
+
+    private void Redo()
+    {
+        commandManger.Redo();
     }
 
     //private void AddToCart(Product product)

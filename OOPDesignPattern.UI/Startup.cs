@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OOPDesignPattern.Data.DataAccess;
 using OOPDesignPattern.Model.Models;
+using OOPDesignPattern.UI.Commands;
 using OOPDesignPattern.UI.Data;
 using System;
 using System.Collections.Generic;
@@ -31,8 +32,9 @@ namespace OOPDesignPattern.UI
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-            services.AddSingleton<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
             services.AddSingleton<IShoppingCart, ShoppingCart>();
+            services.AddSingleton<ICommandManager, CommandManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
