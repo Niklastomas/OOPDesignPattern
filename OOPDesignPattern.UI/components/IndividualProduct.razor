@@ -1,0 +1,21 @@
+﻿@inject IShoppingCart shoppingCart
+
+<div class="card" style="width: 18rem; margin: 20px">
+    <img src=@Product.Image class="card-img-top" alt="..." style="height: 18rem">
+    <div class="card-body">
+        <h5 class="card-title">@Product.Title</h5>
+        <a @onclick="(() => AddToCart.InvokeAsync(Product))" class="btn btn-primary">Add To Cart</a>
+    </div>
+</div>
+
+@code {
+    [Parameter] public Product Product { get; set; }
+    [Parameter] public EventCallback<Product> AddToCart { get; set; }
+
+    //private void AddToCart()
+    //{
+    //    shoppingCart.AddToCart(Product);
+    //    StateHasChanged();
+    //}
+
+}

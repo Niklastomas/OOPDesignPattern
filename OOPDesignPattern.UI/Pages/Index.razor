@@ -1,0 +1,38 @@
+﻿@page "/"
+
+@inject IProductRepository productRepository
+@inject IShoppingCart shoppingCart
+
+<div class="container">
+
+    <i style="font-size: 30px;" class="fas fa-shopping-cart">@shoppingCart.Cart.Count</i>
+
+    <div class="row">
+        @foreach (var product in products)
+        {
+            <IndividualProduct Product="product" AddToCart="AddToCart" />
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<Product> products;
+
+    protected override void OnInitialized()
+    {
+        products = productRepository.GetProducts();
+
+    }
+
+    private void AddToCart(Product product)
+    {
+        shoppingCart.AddToCart(product);
+
+    }
+
+    //private void AddToCart(Product product)
+    //{
+    //    shoppingCart.AddToCart(product);
+    //}
+}

@@ -1,0 +1,12 @@
+﻿@inject IShoppingCart shoppingCart
+
+<h1>Cart: @count</h1>
+
+@code {
+    private int count = 0;
+
+    protected override void OnInitialized()
+    {
+        count = shoppingCart.Cart.Count;
+    }
+}
