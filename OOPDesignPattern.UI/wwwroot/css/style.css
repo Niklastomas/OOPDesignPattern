@@ -7,3 +7,12 @@
     display: flex;
     justify-content: center;
 }
+
+.cart-icon:hover {
+    cursor: pointer;
+    color: dodgerblue;
+}
+
+.home-icon:hover {
+    cursor: pointer;
+}

@@ -4,13 +4,13 @@
     <img src=@Product.Image class="card-img-top" alt="..." style="height: 18rem">
     <div class="card-body">
         <h5 class="card-title">@Product.Title</h5>
-        <a @onclick="(() => AddToCart.InvokeAsync(Product))" class="btn btn-primary">Add To Cart</a>
+        <button @onclick="(() => AddToCart.InvokeAsync(Product))" class="btn btn-primary">Add To Cart</button>
     </div>
 </div>
 
 @code {
-    [Parameter] public Product Product { get; set; }
-    [Parameter] public EventCallback<Product> AddToCart { get; set; }
+    [Parameter] public IProduct Product { get; set; }
+    [Parameter] public EventCallback<IProduct> AddToCart { get; set; }
 
     //private void AddToCart()
     //{

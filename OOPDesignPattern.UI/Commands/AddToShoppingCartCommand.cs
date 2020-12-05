@@ -8,10 +8,10 @@ namespace OOPDesignPattern.UI.Commands
 {
     public class AddToShoppingCartCommand : ICommand
     {
-        private readonly Product _product;
+        private readonly IProduct _product;
         private readonly IShoppingCart _shoppingCart;
 
-        public AddToShoppingCartCommand(Product product, IShoppingCart shoppingCart)
+        public AddToShoppingCartCommand(IProduct product, IShoppingCart shoppingCart)
         {
             _product = product;
             _shoppingCart = shoppingCart;

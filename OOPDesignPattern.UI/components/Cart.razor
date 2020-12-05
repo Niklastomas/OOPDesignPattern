@@ -1,12 +1,18 @@
-﻿@inject IShoppingCart shoppingCart
+﻿<div class="list-group">
+    @foreach (var product in CartItems)
+    {
+        <a href="#" class="list-group-item list-group-item-action" style="width: 300px">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">@product.Title</h5>
+                <p>@product.Price kr</p>
+            </div>
+            <img style="height: 200px" class="mb-1" src="@product.Image" />
+        </a>
 
-<h1>Cart: @count</h1>
+    }
+</div>
 
 @code {
-    private int count = 0;
+    [Parameter] public List<IProduct> CartItems { get; set; }
 
-    protected override void OnInitialized()
-    {
-        count = shoppingCart.Cart.Count;
-    }
 }

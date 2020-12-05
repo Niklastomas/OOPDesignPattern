@@ -3,13 +3,16 @@
 @inject IProductRepository productRepository
 @inject IShoppingCart shoppingCart
 @inject ICommandManager commandManger
+@inject NavigationManager navigate
 
 <div class="container">
-    <button @onclick="Undo">Undo</button>
-    <i style="font-size: 30px;" class="fas fa-shopping-cart">@shoppingCart.Cart.Count</i>
-    <button @onclick="Redo">Redo</button>
+    <div class="row justify-content-center m-5">
+        <button class="btn btn-danger" @onclick="Undo">Undo</button>
+        <i @onclick="NavigateToCart" style="font-size: 30px;" class="fas fa-shopping-cart mx-3 cart-icon">@shoppingCart.Cart.Count</i>
+        <button class="btn btn-info" @onclick="Redo">Redo</button>
+    </div>
 
-    <div class="row">
+    <div class="row justify-content-center">
         @foreach (var product in products)
         {
             <IndividualProduct Product="product" AddToCart="AddToCart" />
@@ -19,19 +22,16 @@
 
 @code {
 
-    private List<Product> products;
+    private List<IProduct> products;
 
     protected override void OnInitialized()
     {
         products = productRepository.GetProducts();
-
     }
 
-    private void AddToCart(Product product)
+    private void AddToCart(IProduct product)
     {
-
         commandManger.Invoke(new AddToShoppingCartCommand(product, shoppingCart));
-
     }
 
     private void Undo()
@@ -44,8 +44,9 @@
         commandManger.Redo();
     }
 
-    //private void AddToCart(Product product)
-    //{
-    //    shoppingCart.AddToCart(product);
-    //}
+    private void NavigateToCart()
+    {
+        navigate.NavigateTo("/cart");
+    }
+
 }

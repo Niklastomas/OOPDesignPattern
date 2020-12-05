@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
 @inject IShoppingCart shoppingCart
+@inject NavigationManager navigate
 
 <div class="page">
     @*<div class="sidebar">
@@ -8,8 +9,8 @@
 
     <div class="main">
         <div class="top-row px-4 justify-content-between">
-            <h3>OOPDesignPattern</h3>
-            <i style="font-size: 30px;" class="fas fa-shopping-cart"></i>
+            <h3 class="home-icon" @onclick="NavigateToHome">OOPDesignPattern</h3>
+            <i style="font-size: 30px;" class="fas fa-shopping-cart cart-icon" @onclick="NavigateToCart"></i>
             @*<a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>*@
         </div>
 
@@ -18,3 +19,15 @@
         </div>
     </div>
 </div>
+
+@code {
+    private void NavigateToCart()
+    {
+        navigate.NavigateTo("/cart");
+    }
+
+    private void NavigateToHome()
+    {
+        navigate.NavigateTo("/");
+    }
+}

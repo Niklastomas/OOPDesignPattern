@@ -5,8 +5,8 @@ namespace OOPDesignPattern.Data.DataAccess
 {
     public interface IProductRepository
     {
-        List<Product> Products { get; set; }
+        List<IProduct> Products { get; set; }
 
-        List<Product> GetProducts();
+        List<IProduct> GetProducts();
     }
 }
