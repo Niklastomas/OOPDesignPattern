@@ -8,7 +8,7 @@ namespace OOPDesignPattern.UI.Commands
     public class CommandManager : ICommandManager
     {
         private Stack<ICommand> commands = new Stack<ICommand>();
-        private ICommand _command;
+        private Stack<ICommand> undos = new Stack<ICommand>();
 
         public void Invoke(ICommand command)
         {
@@ -20,19 +20,20 @@ namespace OOPDesignPattern.UI.Commands
         {
             if (commands.Count > 0)
             {
-                _command = commands.Pop();
-                _command.Undo();
+                var command = commands.Pop();
+                command.Undo();
+                undos.Push(command);
             }
         }
 
         public void Redo()
         {
-            if (_command != null)
+            if (undos.Count > 0)
             {
-                commands.Push(_command);
-                _command.Execute();
+                var command = undos.Pop();
+                commands.Push(command);
+                command.Execute();
             }
-            _command = null;
         }
     }
 }
