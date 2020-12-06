@@ -10,11 +10,13 @@ namespace OOPDesignPattern.Model.Models
 
         public void AddToCart(IProduct product)
         {
+            product.Quantity -= 1;
             Cart.Add(product);
         }
 
         public void RemoveFromCart(IProduct product)
         {
+            product.Quantity += 1;
             Cart.Remove(product);
         }
     }

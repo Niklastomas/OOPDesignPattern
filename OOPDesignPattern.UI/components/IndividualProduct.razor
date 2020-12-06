@@ -5,6 +5,7 @@
     <div class="card-body">
         <h5 class="card-title">@Product.Title</h5>
         <button @onclick="(() => AddToCart.InvokeAsync(Product))" class="btn btn-primary">Add To Cart</button>
+        <p class="card-body">Quantity: <strong>@Product.Quantity</strong></p>
     </div>
 </div>
 
