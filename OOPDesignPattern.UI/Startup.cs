@@ -32,7 +32,7 @@ namespace OOPDesignPattern.UI
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddSingleton<IProductRepository, ProductRepository>();
             services.AddSingleton<IShoppingCart, ShoppingCart>();
             services.AddSingleton<ICommandManager, CommandManager>();
         }
